@@ -1,0 +1,18 @@
+{
+  "name": "lets-build-something-pretty",
+  "owner": {
+    "name": "patheonsceo",
+    "url": "https://github.com/patheonsceo"
+  },
+  "metadata": {
+    "description": "Let's Build Something Pretty: a phased, sign-off-driven way to design and build websites people want to show off."
+  },
+  "plugins": [
+    {
+      "name": "prettifysite",
+      "source": "./",
+      "description": "Design partner for show-off-worthy websites, one signed-off step at a time.",
+      "version": "1.0.0"
+    }
+  ]
+}
