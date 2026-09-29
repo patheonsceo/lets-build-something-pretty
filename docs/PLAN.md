@@ -1,6 +1,6 @@
 # Let's Build Something Pretty: plugin plan
 
-Status: DRAFT v0.1 for review. Nothing is built until this is signed off.
+Status: APPROVED and built as v1.0.0 (2026-09-30).
 
 ## 1. What it is
 
