@@ -1,0 +1,21 @@
+{
+  "plugin": "prettifysite",
+  "version": 1,
+  "project": "",
+  "phase": 0,
+  "step": "intake",
+  "skipped": [],
+  "canvas": "",
+  "gates": {
+    "0-intake": "open",
+    "1-direction": "open",
+    "2-system": "open",
+    "3-imagery": "open",
+    "4-handoff": "open",
+    "5-theme": "open",
+    "6-lowfi": "open",
+    "7-assets": "open",
+    "8-ship": "open"
+  },
+  "updated": ""
+}
