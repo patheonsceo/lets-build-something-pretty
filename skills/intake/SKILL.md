@@ -16,7 +16,8 @@ what is missing. Nothing visual happens in this phase.
    questions per round:
    - Round 1: scope (landing page / multi-page), audience, what success looks
      like, how it must still feel (e.g. credible, established, playful).
-   - Round 2: existing site or first build? copy source (client / to write)?
+   - Round 2: existing site or first build? copy source (client / to write /
+     partly)? If any copy is to be written, note it: `writing-the-copy` runs later.
      does a brand/design system exist? If yes, offer to **skip phases 1-2**
      and import their tokens, fonts and components instead.
    - Round 3: stack (offer `references/stack-recommended.md` as

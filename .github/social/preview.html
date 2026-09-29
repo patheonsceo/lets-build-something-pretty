@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Let's Build Something Pretty</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght,SOFT,WONK@1,9..144,900,100,1&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#0D0C0F; --pink:#FF3EA5; --pink2:#FF8AD0; --paper:#FFF6FB; --ink:#0D0C0F; }
+  * { box-sizing:border-box; margin:0; }
+  html,body { width:1280px; height:640px; overflow:hidden; background:var(--bg); }
+  body { position:relative; font-family:'Anton',sans-serif; color:var(--paper); }
+  .grid { position:absolute; inset:0; background-image:
+      linear-gradient(90deg,rgba(255,62,165,.08) 1px,transparent 1px),
+      linear-gradient(rgba(255,62,165,.08) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,62,165,.035) 1px,transparent 1px),
+      linear-gradient(rgba(255,62,165,.035) 1px,transparent 1px);
+    background-size:128px 128px,128px 128px,32px 32px,32px 32px; }
+  .glow { position:absolute; left:-120px; top:220px; width:720px; height:520px; background:radial-gradient(closest-side,rgba(255,62,165,.28),transparent); }
+  .h { position:absolute; left:60px; top:30px; line-height:.88; }
+  .l1 { font-size:148px; text-transform:uppercase; }
+  .l2 { font-size:148px; text-transform:uppercase; color:transparent; -webkit-text-stroke:2.5px var(--paper); }
+  .l3 { position:relative; display:block; margin-top:-18px; margin-left:-6px; font-family:'Fraunces',serif; font-style:italic; font-weight:900;
+        font-variation-settings:'SOFT' 100,'WONK' 1; font-size:186px; line-height:.9; letter-spacing:-.03em; padding:0 30px 34px 0;
+        background:linear-gradient(100deg,#FF3EA5 10%,#FF8AD0 45%,#FFD1EC 55%,#FF3EA5 80%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .spark { position:absolute; }
+  .tape { position:absolute; left:-60px; right:-60px; bottom:44px; height:54px; transform:rotate(-3.2deg); background:var(--pink); display:flex; align-items:center; overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,.5); }
+  .tape::before,.tape::after { content:''; position:absolute; left:0; right:0; height:9px; background:repeating-linear-gradient(-45deg,var(--ink) 0 12px,var(--pink) 12px 24px); }
+  .tape::before { top:0; } .tape::after { bottom:0; }
+  .tape span { white-space:nowrap; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:19px; letter-spacing:.14em; color:var(--ink); padding-left:40px; }
+  .cable { position:absolute; left:1010px; top:0; width:2px; height:118px; background:var(--paper); opacity:.85; }
+  .hook { position:absolute; left:995px; top:110px; }
+  .load { position:absolute; left:830px; top:156px; width:370px; transform:rotate(4deg); transform-origin:50% 0; }
+  .slings { position:absolute; left:0; top:-40px; width:370px; height:44px; }
+  .win { position:relative; border-radius:14px; background:var(--paper); color:var(--ink); overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,.55), 0 0 0 2px var(--pink); }
+  .bar { height:30px; background:#F1E3EC; display:flex; align-items:center; gap:7px; padding:0 12px; }
+  .bar i { width:10px; height:10px; border-radius:50%; background:#E6BCD4; }
+  .bar b { margin-left:10px; font:500 11px 'JetBrains Mono'; color:#9B6E88; }
+  .hero { height:170px; position:relative; background:radial-gradient(120% 90% at 80% 10%,#FFB3DD 0%,transparent 55%), linear-gradient(160deg,#2B0D1F 0%,#6B1747 55%,#FF3EA5 130%); padding:22px; color:var(--paper); }
+  .hero .t { font-family:'Fraunces',serif; font-style:italic; font-weight:900; font-variation-settings:'SOFT' 100; font-size:44px; line-height:.92; }
+  .hero .btn { position:absolute; left:22px; bottom:18px; font:700 11px 'JetBrains Mono'; background:var(--paper); color:var(--ink); padding:8px 12px; border-radius:6px; letter-spacing:.06em; }
+  .rows { padding:14px 18px 18px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .rows div { height:46px; border-radius:8px; background:linear-gradient(135deg,#FFE3F2,#FFF6FB); border:1px solid #F4C9E1; }
+  .score { position:absolute; right:-26px; top:-30px; width:104px; height:104px; border-radius:50%; background:var(--pink); color:var(--ink); display:grid; place-items:center; transform:rotate(12deg); box-shadow:0 10px 24px rgba(0,0,0,.45); text-align:center; }
+  .score b { font-family:'Anton'; font-size:40px; line-height:.9; display:block; }
+  .score s { font:700 12px 'JetBrains Mono'; opacity:.7; }
+  .tag { position:absolute; left:-64px; top:214px; transform:rotate(-8deg); background:#FFF6FB; color:var(--ink); padding:9px 12px 9px 26px; font:700 12px 'JetBrains Mono'; letter-spacing:.08em; border-radius:4px 10px 10px 4px; box-shadow:0 8px 18px rgba(0,0,0,.4); }
+  .tag::before { content:''; position:absolute; left:9px; top:50%; width:8px; height:8px; margin-top:-4px; border-radius:50%; background:var(--bg); }
+  .cmd { position:absolute; right:60px; top:28px; font:700 16px 'JetBrains Mono'; color:var(--pink2); letter-spacing:.04em; }
+  .cmd span { color:var(--paper); opacity:.55; font-weight:500; }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow"></div>
+  <div class="h">
+    <div class="l1">Let's build</div>
+    <div class="l2">something</div>
+    <span class="l3">pretty.</span>
+  </div>
+  <svg class="spark" style="left:600px;top:350px" width="54" height="54" viewBox="0 0 24 24"><path d="M12 0c.8 6.5 5.5 11.2 12 12-6.5.8-11.2 5.5-12 12-.8-6.5-5.5-11.2-12-12C6.5 11.2 11.2 6.5 12 0z" fill="#FFD1EC"/></svg>
+  <svg class="spark" style="left:655px;top:330px" width="22" height="22" viewBox="0 0 24 24"><path d="M12 0c.8 6.5 5.5 11.2 12 12-6.5.8-11.2 5.5-12 12-.8-6.5-5.5-11.2-12-12C6.5 11.2 11.2 6.5 12 0z" fill="#FF3EA5"/></svg>
+  <div class="cmd">/prettifysite:start <span>· a Claude Code plugin</span></div>
+  <div class="cable"></div>
+  <svg class="hook" width="32" height="50" viewBox="0 0 32 50" fill="none" stroke="#FFF6FB" stroke-width="4" stroke-linecap="round"><path d="M16 2v16"/><path d="M16 18c0 0 12 2 12 14s-10 14-14 12-8-6-6-10"/></svg>
+  <div class="load">
+    <svg class="slings" viewBox="0 0 370 44" fill="none" stroke="#FFF6FB" stroke-width="2" opacity=".8"><path d="M180 -2 L40 44 M180 -2 L330 44"/></svg>
+    <div class="win">
+      <div class="bar"><i></i><i></i><i></i><b>your-site.com</b></div>
+      <div class="hero"><div class="t">Made to be<br>shown off.</div><div class="btn">SIGNED OFF →</div></div>
+      <div class="rows"><div></div><div></div><div></div></div>
+    </div>
+    <div class="score"><div><s>2/10</s><b>10</b><s>/10</s></div></div>
+    <div class="tag">NO ONE-SHOTS</div>
+  </div>
+  <div class="tape"><span>NEVER ONE-SHOT ✦ SIGN-OFF REQUIRED ✦ DESIGN PARTNER AT WORK ✦ NEVER ONE-SHOT ✦ SIGN-OFF REQUIRED ✦ DESIGN PARTNER AT WORK ✦ NEVER ONE-SHOT ✦</span></div>
+</body>
+</html>

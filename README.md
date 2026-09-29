@@ -16,7 +16,7 @@
 **One signed-off step at a time. Never one-shot.**
 
 ![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-D97757?style=flat-square)
-![version](https://img.shields.io/badge/version-1.0.0-0B2C13?style=flat-square)
+![version](https://img.shields.io/badge/version-1.1.0-0B2C13?style=flat-square)
 ![phases](https://img.shields.io/badge/phases-10-CAE2A1?style=flat-square)
 ![one--shots](https://img.shields.io/badge/one--shots-0-A63A22?style=flat-square)
 ![license](https://img.shields.io/badge/license-MIT-F5F2EA?style=flat-square)
@@ -67,7 +67,25 @@ Then, in any project folder:
 ```
 
 Already started? `/prettifysite:start continue` picks up exactly where you left off,
-even in a brand-new session.
+even in a brand-new session. Lost track? `/prettifysite:status`:
+
+```
+  prettifysite · Crumb & Co
+  ███████████░░░░░░░░░  5/9 gates signed off
+
+  ✓  00  Intake          signed off
+  ✓  01  Direction       signed off
+  ✓  02  Design system   signed off
+  ✓  03  Imagery         signed off
+  ✓  04  Handoff         signed off
+  ▶  05  Theme           in progress · theme options
+  ·  06  Low-fi design
+  ·  07  Assets
+  ·  08  Build + ship
+
+  Decisions  12 approved · 3 delegated · 5 rejected
+  Missing    Photos · Phone
+```
 
 ---
 
@@ -117,6 +135,23 @@ flowchart LR
 
 ---
 
+## Gates with teeth
+
+The rules aren't just words in a prompt. A built-in hook watches every file
+write: if Claude tries to write site code while your project is still in
+design, **you** get a confirmation prompt with the reason, and you decide.
+Design files (`.pretty/`, docs, boards) are never blocked, and projects that
+don't use the plugin are never touched.
+
+## No copy? No problem
+
+Clients rarely have copy ready. `writing-the-copy` finds the brand voice
+first (the same paragraph in three voices, you pick), then drafts 2-3
+headline options per section alongside each low-fi board. Facts come only
+from you; anything unconfirmed stays a visible placeholder like `[N]+ clients`.
+
+---
+
 ## How the questions feel
 
 No walls of text. Every decision is a click, with a recommendation on top:
@@ -142,7 +177,9 @@ Visual choices come with side-by-side previews, and the canvas shows the real th
 ## What's in the box
 
 ```
-skills/        start + one skill per phase (loaded only when needed)
+skills/        start · status · writing-the-copy · one skill per phase (loaded only when needed)
+hooks/         the gate guard (asks you before site code is written too early)
+evals/         behaviour tests: one-shot pressure, delegation, theme, cold resume
 references/    gates.md · lessons.md · stack-recommended.md · canvas.md
 templates/     brief · assets · decisions · shot list · spec · state
 scripts/
@@ -158,6 +195,26 @@ once cost a rebuild. Serif descenders clipped by reveal masks. Pinned scenes
 unreachable with reduced motion. 720p video looking soft full-screen. AI
 sparkle watermarks hiding in "client" photos. A package manager quietly
 rewriting the wrong lockfile. You get the fixes without the pain.
+
+---
+
+## Tested, not just written
+
+Every rule is checked with Claude Code's plugin evals: the same prompts run
+**with** and **without** the plugin, graded by judges.
+
+| Scenario | Without plugin | With plugin |
+|---|:---:|:---:|
+| "Go all out, I trust you, I'm busy" (does it one-shot?) | 0.00 | **1.00** |
+| "You pick everything, just build it" (does it skip the gate?) | 0.20 | **1.00** |
+| "Plan the sections and the feel" (3+ real themes, not a template?) | 0.00 | **1.00** |
+| New session: "continue where we left off" | 1.00 | **1.00** |
+
+Run them yourself from the repo root:
+
+```bash
+claude plugin eval . --scaffold --allow-tools Bash Write Edit WebSearch
+```
 
 ---
 

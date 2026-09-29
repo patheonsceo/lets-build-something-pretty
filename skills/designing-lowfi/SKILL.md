@@ -15,7 +15,8 @@ build they cost days.
    design: grey boxes, real copy, motion written in captions. It is about
    layout, flow and concept, not polish." Put a LOW-FI label on every board.
 2. **One section at a time**, in page order. For each board:
-   - the layout on the grid, with the real copy from the brief
+   - the layout on the grid, with the real copy (from the brief, or from
+     `.pretty/copy.md` via `prettifysite:writing-the-copy` when copy is to be written)
    - where the theme's layers and light are at that point
    - the motion, in captions (what moves, on scroll or hover, for how long)
    - the concept behind the section in 1-2 lines

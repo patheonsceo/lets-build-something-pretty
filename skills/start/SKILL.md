@@ -21,6 +21,8 @@ Violating the letter of this rule is violating its spirit.
    - `BLOCKED` on gstack MISSING: show the install line and stop.
    - `BLOCKED` on gstack OUTDATED: ask the user to run `/gstack-upgrade` first, then stop.
    - Other MISSING lines: show them, ask the user to install, stop.
+   - `LATER` lines are not blockers: mention them once so the user can install
+     them before that phase, and carry on.
 2. If `.pretty/state.json` exists: read it, `.pretty/decisions.md` and
    `.pretty/brief.md`, then tell the user in 3-5 lines where the project stands
    (phase, last sign-off, next step) and continue that phase.
@@ -47,6 +49,13 @@ Load each phase skill only when its phase is active.
 
 Phases 1-2 may be skipped only if the user chose that at intake (existing brand
 system). Record the skip in `decisions.md`.
+
+If intake recorded copy as "to be written", also load `prettifysite:writing-the-copy`:
+its voice step runs after Phase 3, its section step inside Phase 6.
+`/prettifysite:status` shows the progress board at any time.
+
+When a phase gate closes, set its entry in `state.json` `gates` to `"done"`
+(or `"skipped"`), and `phase` to the next number.
 
 ## Step 3: Every decision goes through a gate
 
